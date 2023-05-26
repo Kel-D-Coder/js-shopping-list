@@ -47,14 +47,15 @@ function addItemToDom() {
 }
 
 // Display Items from storage
-// const displayItemsFromStorage = () => {
-//    const itemFromStorage = addItemToStorage()
-// }
-
 function displayItems() {
    const itemFromStorage = addItemToStorage();
-   itemFromStorage.forEach((item) => {
-      addItemToDom()
+   itemFromStorage.forEach((item, index) => {
+
+      if (index === item) {
+      const li = document.createElement('li')
+      li.textContent = localStorage.getItem('item', JSON.parse(item))
+      itemList.appendChild(li)
+   }
    })
 }
 
@@ -94,4 +95,4 @@ const clearList = () => {
 itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', clearList)
-document.addEventListener('DOMContentLoaded', displayItems)
+document.addEventListener('load', displayItems)
